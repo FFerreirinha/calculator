@@ -1,0 +1,39 @@
+.calculator {
+    display: flex;
+    margin: auto;
+    width: 350px;
+    height: 550px;
+    border-style: solid;
+    border-color: gray; 
+    flex-wrap:wrap;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2%;
+}
+
+
+.screen {
+    width: 320px;
+    height: 125px;
+    border-style: solid;
+    border-color: gray; 
+    margin: 15px;
+    border-radius: 3%
+}
+
+.buttons {
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap:wrap;
+}
+
+div.numbers > * {
+    border-radius: 15%;
+    height: 35px;
+    width: 80px;
+    margin: 1px;
+}
+
+div.operators > * {
+
+}
