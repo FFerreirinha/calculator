@@ -7,7 +7,6 @@
     border-color: gray; 
     flex-wrap:wrap;
     justify-content: center;
-    align-items: center;
     border-radius: 2%;
 }
 
@@ -22,18 +21,7 @@
 }
 
 .buttons {
-    justify-content: space-evenly;
-    align-items: center;
-    flex-wrap:wrap;
-}
-
-div.numbers > * {
-    border-radius: 15%;
-    height: 35px;
-    width: 80px;
-    margin: 1px;
-}
-
-div.operators > * {
-
+    display:grid;
+    grid-template-columns: 75px 75px 75px 75px;
+    margin: 10px;
 }
