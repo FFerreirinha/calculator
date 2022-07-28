@@ -1,4 +1,5 @@
-const screen = document.querySelector('.screen');
+const display = document.querySelector('.display')
+const selected = document.querySelector('.selected');
 const zero = document.getElementById('zero');
 const one = document.getElementById('one');
 const two = document.getElementById('two');
@@ -55,130 +56,152 @@ function operate(a, b, operator) {
 
     }
 }
-function screenOperatorCheck() {
-    if (screen.innerHTML === "+" || screen.innerHTML === "-" || screen.innerHTML === "x" || screen.innerHTML === "/" ||screen.innerHTML === "%") {
-        screen.innerHTML = "";
+function selectedOperatorCheck() {
+    if (selected.innerHTML === "+" || selected.innerHTML === "-" || selected.innerHTML === "x" || selected.innerHTML === "/" ||selected.innerHTML === "%") {
+        selected.innerHTML = "";
     }
 }
 
 function populateDisplay(a) {
     console.log([currentNum, storedNum]);
-    screen.innerHTML = screen.innerHTML + a;
+    selected.innerHTML = selected.innerHTML + a;
+
+    display.innerHTML += a;
 }
 
 function replaceDisplay(a) {
-    screen.innerHTML = a;
+    selected.innerHTML = a;
+
+    display.innerHTML += a;
 }
 
+function resolvePrevious() {
+    if (currentOperator === "+" || currentOperator === "-" || currentOperator === "x" || currentOperator === "/" || currentOperator === "%") {
+        currentNum = parseFloat(selected.innerHTML);
+        let total = operate(storedNum, currentNum, currentOperator)
+        currentNum = total;
+        display.innerHTML = "";
+        currentOperator = "";
+        replaceDisplay(total);
+    }   
+}
 let currentNum = 0; 
 let storedNum = 0;
 let currentOperator = "";
 
 zero.addEventListener("click", () => {
-    screenOperatorCheck();
+    selectedOperatorCheck();
     populateDisplay('0');
     return currentNum;
 });
 one.addEventListener("click", () => {
-    screenOperatorCheck();
+    selectedOperatorCheck();
     populateDisplay('1');
     return currentNum;
 });
 two.addEventListener("click", () => {
-    screenOperatorCheck();
+    selectedOperatorCheck();
     populateDisplay('2');
     return currentNum;
 });
 three.addEventListener("click", () => {
-    screenOperatorCheck();
+    selectedOperatorCheck();
     populateDisplay('3');
     return currentNum;
 });
 four.addEventListener("click", () => {
-    screenOperatorCheck();
+    selectedOperatorCheck();
     populateDisplay('4');
     return currentNum;
 });
 five.addEventListener("click", () => {
-    screenOperatorCheck();
+    selectedOperatorCheck();
     populateDisplay('5');
     return currentNum;
 });
 six.addEventListener("click", () => {
-    screenOperatorCheck();
+    selectedOperatorCheck();
     populateDisplay('6');
     return currentNum;
 });
 seven.addEventListener("click", () => {
-    screenOperatorCheck();
+    selectedOperatorCheck();
     populateDisplay('7');
     return currentNum;
 });
 eight.addEventListener("click", () => {
-    screenOperatorCheck();
+    selectedOperatorCheck();
     populateDisplay('8');
     return currentNum;
 });
 nine.addEventListener("click", () => {
-    screenOperatorCheck();
+    selectedOperatorCheck();
     populateDisplay('9');
     return currentNum;
 });
 floating.addEventListener("click", () => {
-    screenOperatorCheck();
+    selectedOperatorCheck();
     populateDisplay('.');
     return currentNum
 })
 
 plus.addEventListener("click", () => {
+    resolvePrevious();
     currentOperator = '+';
-    currentNum = parseFloat(screen.innerHTML);
+    currentNum = parseFloat(selected.innerHTML);
     storedNum = currentNum;
     replaceDisplay('+');
     return currentOperator;
 })
 minus.addEventListener("click", () => {
+    resolvePrevious();
     currentOperator = '-';
-    currentNum = parseFloat(screen.innerHTML);
+    currentNum = parseFloat(selected.innerHTML);
     storedNum = currentNum;
     replaceDisplay('-');
     return currentOperator;
 })
 times.addEventListener("click", () => {
+    resolvePrevious();
     currentOperator = 'x';
-    currentNum = parseFloat(screen.innerHTML);
+    currentNum = parseFloat(selected.innerHTML);
     storedNum = currentNum;
     replaceDisplay('x');
     return currentOperator;
 })
 divisor.addEventListener("click", () => {
+    resolvePrevious();
     currentOperator = '/';
-    currentNum = parseFloat(screen.innerHTML);
+    currentNum = parseFloat(selected.innerHTML);
     storedNum = currentNum;
     replaceDisplay('/');
     return currentOperator;
 })
 percentage.addEventListener("click", () => {
+    resolvePrevious();
     currentOperator = 'x';
-    currentNum = parseFloat(screen.innerHTML) / 100;
+    currentNum = parseFloat(selected.innerHTML) / 100;
     storedNum = currentNum;
     replaceDisplay('%');
     return currentOperator;
 })
 equal.addEventListener("click", () => {
-    currentNum = parseFloat(screen.innerHTML);
+    currentNum = parseFloat(selected.innerHTML);
     let total = operate(storedNum, currentNum, currentOperator);
     currentNum = total;
+    display.innerHTML = "";
+    currentOperator = "";
     replaceDisplay(total);
 
 })
 
 clear.addEventListener("click", () => {
-    screen.innerHTML = "";
+    selected.innerHTML = "";
+    display.innerHTML = "";
     currentNum = 0;
     storedNum = 0;
     currentOperator = 0;
 })
 del.addEventListener("click", () => {
-    screen.innerHTML = "";
+    selected.innerHTML = "";
 })

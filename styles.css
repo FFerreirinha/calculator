@@ -9,15 +9,24 @@
     justify-content: center;
     border-radius: 2%;
 }
-
-
 .screen {
+    display: grid;
     width: 320px;
     height: 125px;
     border-style: solid;
     border-color: gray; 
     margin: 15px;
     border-radius: 3%
+}
+
+.display {
+    width: 150px;
+    height: 50px;
+}
+
+.selected {
+    width: 170px;
+    height: 75px;
 }
 
 .buttons {
